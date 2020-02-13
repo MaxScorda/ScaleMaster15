@@ -159,7 +159,6 @@ void setup() {
   inizializzaPulsanti();
   inizializzaDigital();
 
-  MIDIsoftreset();
   azzeraStacks();
   OnOff();
 

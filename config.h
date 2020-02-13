@@ -1,8 +1,8 @@
 #ifndef config_H
 #define config_H
 
-#define led 13
-#define speakerPin 7
+#define LED 13
+#define SPEAKERPIN 8
 #define interruptInt 0
 
 #define timeOffset 6

@@ -17,7 +17,6 @@ void playScala() {
   }
   if (contick == 14)  {
     OnOff();
-    spengoNote(); //prima di azzerare stack
     azzeraStacks();
     contick = 0;
     carica();

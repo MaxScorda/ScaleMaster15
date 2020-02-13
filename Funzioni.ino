@@ -49,7 +49,7 @@ int PotValue(char PotNumber) {
 
 void inizializzaDigital() {
   //mettere qui le confugurazioni diverse ogni volta
-  pinMode(led, OUTPUT);
+  pinMode(LED, OUTPUT);
 }
 
 void inizializzaPulsanti() {
@@ -280,7 +280,7 @@ void controlBlink() {
       else  myGLCD.drawBitmap(75, 40,  emptySquare, 7, 6);
     }
   }
-  digitalWrite(led, LOW);
+  digitalWrite(LED, LOW);
   //myGLCD.update(); // lo metto solo qui col refresh al tick
 }
 
@@ -373,7 +373,6 @@ void OnOff() {
     lcdprint(F(" S/ON"), 32, Dx);
   }
   else {
-    spengoNote();
     if (debug)  lcdprint(F("S/OFF DBG"), 32, Dx);
     else lcdprint(F("  S/OFF"), 32, Dx);
   }
