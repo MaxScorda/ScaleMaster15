@@ -18,27 +18,6 @@ void displayPotStatus() {
   if (cont > 0)   myGLCD.update();
 }
 
-void displayButtonStatus(byte numbut) {
-  //per ora continuamo a tenere uno alla volta
-  //in alternativa usare il doppio tasto per accendere e spegnere
-  //resetScreen();
-  //controlli
-  byte yvol = 16; //variabile per rendere il volume mobile
-
-  for (int i = 11; i < 12; i++)
-  {
-    if (i == potaction) myGLCD.drawBitmap(2 + (i % 2) * 74, 32,  fullSquare, 5, 5);
-    else  myGLCD.drawBitmap(2 + (i % 2) * 74, 32,  emptySquare, 5, 5);
-  }
-
-  for (int i = 10; i < 11; i++)
-  {
-    if (i == potaction) myGLCD.drawBitmap(2 + (i / 11) * 74, 40,  fullSquare, 6, 6);
-    else  myGLCD.drawBitmap(2 + (i / 11) * 74, 40 ,  emptySquare, 6, 6);
-  }
-
-  myGLCD.update();
-}
 
 void printPot(byte numpot) {
   resetScreen();
@@ -57,41 +36,17 @@ void resetScreen() {
   //raddrizza schermo e riparte col conteggio
   millStart = millis(); //azzero conteggio ss
   myGLCD.invert(false);
-  //  if ((millis() - millStart) >= 50000) layout(true); //se logo ridesegna lo schermo
+
 }
 
 void layout(boolean clean) {
   if (clean == true)  myGLCD.clrScr();
-
-  // myGLCD.drawRoundRect(74, 0, 83, 38); //rett dx
-  // myGLCD.drawRoundRect(0, 0, 9, 47);  //rett sx
   myGLCD.drawRoundRect(0, 38, 83, 47); //basso
-  //myGLCD.drawRoundRect(0, 29, 83, 37); //centrale seq
   myGLCD.drawRoundRect(0, 0, 83, 38); //centrale main
-
-  //righe
-  // myGLCD.drawLine(42, 0, 42, 24); //centrale
-  // myGLCD.drawLine(10, 24, 74, 24); //centrale
-  // myGLCD.drawLine(36, 39, 36, 47); //div parameters
-  //myGLCD.drawLine(10, 29, 73, 29);
 
   //label
   myGLCD.print(F("Key"), 3, 32);
-  /*
-   myGLCD.print(F("Pot0"), 11, 2 );
-   myGLCD.print(F("Pot1"), 44, 2);
-   myGLCD.print(F("Pot2"), 11, 9);
-   myGLCD.print(F("Pot3"), 44, 9);
 
-   myGLCD.print(F("Vel."), 11, 16);
-   myGLCD.print(F("BPM "), 44, 16);
-
-   myGLCD.print(F("Time left"), 11, 26);
-
-
-   //init stati
-   for (int i = 0; i < 4; i++) myGLCD.print(String(FunStatus[i]), 12 + (6 * i), 40);
-  */
   myGLCD.update();
 }
 
