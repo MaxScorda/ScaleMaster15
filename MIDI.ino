@@ -6,19 +6,15 @@ int setnoteSpeed(int RS, byte mult) {
   return result;
 }
 
-
-void playTone(int nota, int tempdur) {
-  int tono = tones[nota];
-  Serial.println("Nota: " + String(nota));
-
-  for (long i = 0; i < tempdur * 1000L; i += tono * 2)   {
-    //tono
-    digitalWrite(SPEAKERPIN, HIGH);
-    delayMicroseconds(tono);
-    digitalWrite(SPEAKERPIN, LOW);
-    delayMicroseconds(tono);
+void PlayScale() {
+  int nota;
+  for (int i = 0; i < 7; i++)   {
+    nota = getScala(i, "M") ;
+    tone(SPEAKERPIN, tones[nota], 200);
+    delay(500);
   }
 }
+
 
 //================ scale ===========================
 

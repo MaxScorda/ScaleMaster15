@@ -92,7 +92,7 @@ void loop() {
   displayPotStatus();
 
   //Trasferisci vecchi valori nei nuovi
-  for (int i = 0; i < 7; i++)TastoNotaOld[i] = TastoNota[i];
+  for (int i = 0; i < 12; i++)TastoNotaOld[i] = TastoNota[i];
 
   myGLCD.update();
 }

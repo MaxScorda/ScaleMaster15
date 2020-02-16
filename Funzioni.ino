@@ -47,15 +47,20 @@ void ElaboraPulsantiAnalog() {
     }
     else if (TastoNota[11] == 2)  {
       // serprint(F("down"));
+      PotAverage[11] =  (PotAverage[11] + 1) % 12;
+      displayPotStatus();
     }
     else if (TastoNota[11] == 3)  {
       // serprint(F("dx"));
     }
     else if (TastoNota[11] == 4)  {
       //  serprint(F("up"));
+      PotAverage[11] =  (PotAverage[11] + 11) % 12;
+      displayPotStatus();
     }
     else if (TastoNota[11] == 5)  {
       // serprint(F("Sel"));
+      PlayScale();
     }
   }
 }

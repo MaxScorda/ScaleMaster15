@@ -2,7 +2,7 @@
 #define config_H
 
 #define LED 13
-#define SPEAKERPIN 8
+#define SPEAKERPIN 9
 
 #define timeOffset 6
 
