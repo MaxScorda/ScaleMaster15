@@ -8,11 +8,19 @@ int setnoteSpeed(int RS, byte mult) {
 
 void PlayScale() {
   int nota;
+  int freqq;
+   myGLCD.print(padD(" ", 20, " "), 2 , 41 );
   for (int i = 0; i < 7; i++)   {
-    nota = getScala(i, "M") ;
-    tone(SPEAKERPIN, tones[nota], 200);
-    delay(500);
+    myGLCD.print(score[getScala(i, "M") % 12], 2 +(i*12) , 41 );
+    myGLCD.update();
+    nota = getScala(i, "M") ; //puo' essere >11
+    freqq = (nota / 12 > 0 ? 2 : 1); //se cambio ottava raddoppio frequenza
+    serprint((String)F("nota ") + String(nota%12));
+    tone(SPEAKERPIN, (tones[nota% 12] )*freqq, 500);
+    delay(500*1.3);
+     
   }
+  serprint("");
 }
 
 

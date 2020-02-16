@@ -6,8 +6,7 @@ void initLcd() {
 void displayPotStatus() {
   byte cont = 0;
 
-  for (int i = 11; i < 12; i++)
-  {
+  for (int i = 11; i < 12; i++)  {
     //nota
     if (PotAverage[i] != OldPOTVal[i]) {
       printPot(i);

@@ -24,8 +24,10 @@ void LeggiPulsanti() {
   //LETTURA ANALOGICA
   leggiser = analogRead(0);
   // serprint(String(leggiser));
-  if (leggiser > 900)
+  if (leggiser > 900){
     TastoNota[11] = 0;
+    lastread=0;
+  }
   else if (leggiser < 100)
     TastoNota[11] = 1; //sx
   else if (leggiser < 200)
@@ -40,8 +42,8 @@ void LeggiPulsanti() {
 
 
 void ElaboraPulsantiAnalog() {
-
-  if ( TastoNota[11] != TastoNotaOld[11]) {
+  static unsigned long timevis = millis();
+  if (( TastoNota[11] != TastoNotaOld[11]) && (TastoNota[11] > 0)) {
     if (TastoNota[11] == 1)  {
       //  serprint(F("sx"));
     }
@@ -61,6 +63,15 @@ void ElaboraPulsantiAnalog() {
     else if (TastoNota[11] == 5)  {
       // serprint(F("Sel"));
       PlayScale();
+    }
+    lastread = TastoNota[11];
+    timevis = millis();
+  }
+  else {
+    if ( (timevis + 500 < millis()) && (TastoNota[11] >0)) {
+      serprint((String)F("cambio ")+String(lastread));
+      TastoNota[11] = lastread;
+      timevis = millis();
     }
   }
 }
@@ -121,7 +132,7 @@ void lcdprint(String valprint, byte xpos, char cleanmode ) {
 //================ Varie ==============
 void OnOff() {
   acceso = !acceso;
-  serprint(String(acceso));
+  serprint((String)F("Acceso ")+(acceso?F("On"):F("Off")));
 }
 
 unsigned int beat2time(int beat) {
@@ -168,4 +179,17 @@ int mcm (int a, int b) {
     ret = cont1;
   }
   return ret;
+}
+
+String padD(String sstt, int lens, String charsub) {
+  //pad a dx
+  String spaces = "";
+  for (int i = sstt.length(); i < lens; i++) spaces = spaces + charsub;
+  return sstt + spaces;
+}
+String padS(String sstt, int lens, String charsub) {
+  //pad a sx
+  String spaces = "";
+  for (int i = sstt.length(); i < lens; i++) spaces = spaces + charsub;
+  return spaces + sstt;
 }

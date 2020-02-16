@@ -2,8 +2,8 @@
 #include <TimedAction.h>
 #include"Config.h";
 
-boolean debug = false;
-//boolean debug = true;
+//boolean debug = false;
+boolean debug = true;
 
 // =========== PARAMETRI MODIFCABILI DI BOOT
 //flag acceso/spento
@@ -38,7 +38,10 @@ String scoreN [] = {("Do"), ("Do#"), ("Re"), ("Re#"),
 char scalamaggiore[] = {0, 2, 2, 1, 2, 2, 2 };
 char scalaminore[] = {0, 2, 1, 2, 2, 1, 2 };
 char scalapos = 10;
-int tones[] = { 1047, 1109, 1175, 1245, 1319, 1397, 1480, 1568, 1661, 1760, 1865, 1976 };
+int tones[] = {262, 277, 294, 311,
+               330, 349, 370, 392,
+               415, 440, 466, 494
+              };
 int duration = 800;
 // ==================
 
@@ -50,6 +53,7 @@ byte lastx, lasty;
 
 byte TastoNota[12];
 byte TastoNotaOld[12];
+byte lastread;
 
 TimedAction SSTick = TimedAction(30000, screenSaver);  //Screensaver
 
