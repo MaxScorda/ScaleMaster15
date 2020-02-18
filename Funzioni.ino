@@ -10,6 +10,9 @@ void inizializzaDigital() {
   //mettere qui le confugurazioni diverse ogni volta
   pinMode(LED, OUTPUT);
   pinMode(SPEAKERPIN, OUTPUT);
+   pinMode(11, INPUT);
+   digitalWrite(11, HIGH);
+   pinMode(12, INPUT_PULLUP);
 }
 
 
@@ -24,10 +27,8 @@ void LeggiPulsanti() {
   //LETTURA ANALOGICA
   leggiser = analogRead(0);
   // serprint(String(leggiser));
-  if (leggiser > 900){
+  if (leggiser > 900)
     TastoNota[11] = 0;
-    lastread=0;
-  }
   else if (leggiser < 100)
     TastoNota[11] = 1; //sx
   else if (leggiser < 200)
@@ -43,7 +44,7 @@ void LeggiPulsanti() {
 
 void ElaboraPulsantiAnalog() {
   static unsigned long timevis = millis();
-  if (( TastoNota[11] != TastoNotaOld[11]) && (TastoNota[11] > 0)) {
+  if (( TastoNota[11] != TastoNotaOld[11]) || (lastread > 0)) {
     if (TastoNota[11] == 1)  {
       //  serprint(F("sx"));
     }
@@ -64,13 +65,12 @@ void ElaboraPulsantiAnalog() {
       // serprint(F("Sel"));
       PlayScale();
     }
-    lastread = TastoNota[11];
+    lastread = 0;
     timevis = millis();
   }
   else {
-    if ( (timevis + 500 < millis()) && (TastoNota[11] >0)) {
-      serprint((String)F("cambio ")+String(lastread));
-      TastoNota[11] = lastread;
+    if ( (timevis + 500 < millis()) && (TastoNota[11] > 0)) {
+      lastread = 1;
       timevis = millis();
     }
   }
@@ -132,7 +132,7 @@ void lcdprint(String valprint, byte xpos, char cleanmode ) {
 //================ Varie ==============
 void OnOff() {
   acceso = !acceso;
-  serprint((String)F("Acceso ")+(acceso?F("On"):F("Off")));
+  serprint((String)F("Acceso ") + (acceso ? F("On") : F("Off")));
 }
 
 unsigned int beat2time(int beat) {

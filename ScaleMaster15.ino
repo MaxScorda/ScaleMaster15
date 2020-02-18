@@ -1,3 +1,5 @@
+//PIN 11: se a 0 (gnd) suona scala minore, altrimenti maggiore
+
 #include <LCD5110_Graph.h>
 #include <TimedAction.h>
 #include"Config.h";
@@ -72,6 +74,14 @@ unsigned contick = 0;
 //conteggio timer per screensaver (relativo)
 unsigned long millStart;
 
+//struttura
+
+struct sInfo {
+  bool PlayScala; //1: play major scale, 0:play minor digital 11
+};
+typedef struct sInfo SSInfo;
+SSInfo strucInfo;
+
 
 void setup() {
   if (debug)Serial.begin(9600);
@@ -91,6 +101,7 @@ void setup() {
 
 void loop() {
   if ((millis() - millStart) > 20000) SSTick.check();
+  CheckInput();
   LeggiPulsanti() ;
   ElaboraPulsantiAnalog();
   displayPotStatus();
