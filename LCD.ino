@@ -3,10 +3,10 @@ void initLcd() {
   myGLCD.setFont(TinyFont);
 }
 
-void CheckInput(){
- // serprint(String(digitalRead(11))+"  -  "+String(digitalRead(12)));
-  strucInfo.PlayScala=digitalRead(11);
-  }
+void CheckInput() {
+  // serprint(String(digitalRead(11))+"  -  "+String(digitalRead(12)));
+  strucInfo.PlayScala = digitalRead(11);
+}
 
 void displayPotStatus() {
   byte cont = 0;
@@ -32,26 +32,23 @@ void printPot(byte numpot) {
 
 void lcdprint(String valprint, byte xpos, char cleanmode ) {
   xpos = max(xpos, 39);
-  if (joystickComm == true) {
-    switch (cleanmode) {
-      case -1:
-        myGLCD.drawBitmap(37, 39, emptySquare, xpos, 7);
-        break;
-      case 99:
-        myGLCD.drawBitmap(37, 39, emptySquare, 75, 7);
-        break;
-      case 1:
-        myGLCD.drawBitmap(xpos, 39, emptySquare, 75 - xpos, 7);
-        break;
-      case 0:
-        // myGLCD.clrRect(xpos, 40, xpos + (valprint.length() * 4) - 1, 45);
-        // myGLCD.drawBitmap(xpos, 40,  emptySquare, valprint.length()*4, 7);
-        break;
-    }
-    myGLCD.setFont(TinyFont);
-    myGLCD.print(valprint, xpos, 40);
-
+  switch (cleanmode) {
+    case -1:
+      myGLCD.drawBitmap(37, 39, emptySquare, xpos, 7);
+      break;
+    case 99:
+      myGLCD.drawBitmap(37, 39, emptySquare, 75, 7);
+      break;
+    case 1:
+      myGLCD.drawBitmap(xpos, 39, emptySquare, 75 - xpos, 7);
+      break;
+    case 0:
+      // myGLCD.clrRect(xpos, 40, xpos + (valprint.length() * 4) - 1, 45);
+      // myGLCD.drawBitmap(xpos, 40,  emptySquare, valprint.length()*4, 7);
+      break;
   }
+  myGLCD.setFont(TinyFont);
+  myGLCD.print(valprint, xpos, 40);
 }
 
 

@@ -69,9 +69,7 @@ void ElaboraPulsantiAnalog() {
     }
     else if (TastoNota[11] == 5)  {
       // serprint(F("Sel"));
-      byte oldplayscala;
-      if (howtoplay%3==) strucInfo.PlayScala
-      PlayScale();
+      OnOff();
     }
     lastread = 0;
     timevis = millis();
@@ -89,7 +87,7 @@ void HowToPlay(char valmov) {
   String toPrint;
   String strApp[] = {F("S"), F("A"), F("C")};
   strucInfo.howtoplay = (strucInfo.howtoplay + valmov + 9) % 9;
-  toPrint = String((((strucInfo.howtoplay / 3) + 1) * 30)) + strApp[strucInfo.howtoplay % 3];
+  toPrint = String(((3-(strucInfo.howtoplay / 3) ) * 30)) + strApp[strucInfo.howtoplay % 3];
   myGLCD.print(toPrint, 70, 32);
 }
 

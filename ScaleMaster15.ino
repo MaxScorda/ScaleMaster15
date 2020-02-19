@@ -1,4 +1,13 @@
-//PIN 11: se a 0 (gnd) suona scala minore, altrimenti maggiore
+/*
+  PIN 9: beep
+  PIN 11: if 0 (gnd) play minor scale else major scale
+  Instructions:
+  Up/Down: change scale
+  Rx/Lx: change 90/60/30 BPM +
+          S: Mode by Pin 11
+          A: Major and Minor mode
+          C: continuos play with tone change
+*/
 
 #include <LCD5110_Graph.h>
 #include <TimedAction.h>
@@ -10,8 +19,6 @@ boolean debug = true;
 // =========== PARAMETRI MODIFCABILI DI BOOT
 //flag acceso/spento
 boolean acceso = true; //all'inizio va girato al contrario
-//se attivo sostituisce joystick ai potenziometri
-boolean joystickComm = true;
 
 
 // =========== fine parametri BOOT
@@ -107,7 +114,7 @@ void loop() {
   LeggiPulsanti() ;
   ElaboraPulsantiAnalog();
   displayPotStatus();
-
+  PlayControl();
   //Trasferisci vecchi valori nei nuovi
   for (int i = 0; i < 12; i++)TastoNotaOld[i] = TastoNota[i];
 
