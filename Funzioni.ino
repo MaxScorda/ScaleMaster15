@@ -10,9 +10,13 @@ void inizializzaDigital() {
   //mettere qui le confugurazioni diverse ogni volta
   pinMode(LED, OUTPUT);
   pinMode(SPEAKERPIN, OUTPUT);
-   pinMode(11, INPUT);
-   digitalWrite(11, HIGH);
-   pinMode(12, INPUT_PULLUP);
+  pinMode(11, INPUT);
+  digitalWrite(11, HIGH);
+  pinMode(12, INPUT_PULLUP);
+}
+
+void inizializzaVar() {
+  strucInfo.howtoplay = 0;
 }
 
 
@@ -46,6 +50,7 @@ void ElaboraPulsantiAnalog() {
   static unsigned long timevis = millis();
   if (( TastoNota[11] != TastoNotaOld[11]) || (lastread > 0)) {
     if (TastoNota[11] == 1)  {
+      HowToPlay(-1);
       //  serprint(F("sx"));
     }
     else if (TastoNota[11] == 2)  {
@@ -54,6 +59,7 @@ void ElaboraPulsantiAnalog() {
       displayPotStatus();
     }
     else if (TastoNota[11] == 3)  {
+      HowToPlay(1);
       // serprint(F("dx"));
     }
     else if (TastoNota[11] == 4)  {
@@ -76,6 +82,14 @@ void ElaboraPulsantiAnalog() {
   }
 }
 
+void HowToPlay(char valmov) {
+  //0-9:  30/60/90 bpm con s:suono M e m in base scelta, T:suono M e n, T: scala scelta su cambio scala
+  String toPrint;
+  String strApp[] = {F("S"), F("A"), F("C")};
+  strucInfo.howtoplay = (strucInfo.howtoplay + valmov + 9) % 9;
+  toPrint = String((((strucInfo.howtoplay / 3) + 1) * 30)) + strApp[strucInfo.howtoplay % 3];
+  myGLCD.print(toPrint, 70, 32);
+}
 
 //================ Random ==============
 int goodRandomseed() {

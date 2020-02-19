@@ -9,7 +9,7 @@ int setnoteSpeed(int RS, byte mult) {
 void PlayScale() {
   int nota;
   int freqq;
-  int lenn = 250;
+  int lenn = 500*((strucInfo.howtoplay/3)+1) ;
 
   if ( strucInfo.PlayScala == 1)
     myGLCD.drawBitmap(2, 40, emptySquare, 81, 6);

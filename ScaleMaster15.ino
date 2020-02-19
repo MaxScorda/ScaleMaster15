@@ -78,6 +78,7 @@ unsigned long millStart;
 
 struct sInfo {
   bool PlayScala; //1: play major scale, 0:play minor digital 11
+  byte howtoplay; //0-9:  30/60/90 bpm con s:suono M e m in base scelta, T:suono M e n, T: scala scelta su cambio scala
 };
 typedef struct sInfo SSInfo;
 SSInfo strucInfo;
@@ -91,6 +92,7 @@ void setup() {
   //logo(2000);
   layout(true);
   inizializzaDigital();
+  inizializzaVar();
   OnOff();
   //Prerequisiti
   SSTick.enable();

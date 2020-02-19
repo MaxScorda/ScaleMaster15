@@ -25,9 +25,9 @@ void printPot(byte numpot) {
   resetScreen();
   scalapos = PotAverage[numpot];
   printScala();
-  myGLCD.printNumI(scalapos, 20, 32, 2);
-  myGLCD.print(scoreN[scalapos] + " ", 42, 32);
-  myGLCD.print(score[scalapos] + " ", 64, 32);
+  myGLCD.printNumI(scalapos, 18, 32, 2);
+  myGLCD.print(scoreN[scalapos] + " ", 32, 32);
+  myGLCD.print(score[scalapos] + " ", 48, 32);
 }
 
 
@@ -46,7 +46,8 @@ void layout(boolean clean) {
 
   //label
   myGLCD.print(F("Key"), 3, 32);
-
+  myGLCD.print(F("M:"), 62, 32);
+  HowToPlay(0);
   myGLCD.update();
 }
 
