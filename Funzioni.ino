@@ -69,6 +69,8 @@ void ElaboraPulsantiAnalog() {
     }
     else if (TastoNota[11] == 5)  {
       // serprint(F("Sel"));
+      byte oldplayscala;
+      if (howtoplay%3==) strucInfo.PlayScala
       PlayScale();
     }
     lastread = 0;
@@ -117,29 +119,6 @@ void serprint(String valprint) {
   if (debug) Serial.println(valprint);
 }
 
-void lcdprint(String valprint, byte xpos, char cleanmode ) {
-  xpos = max(xpos, 39);
-  if (joystickComm == true) {
-    switch (cleanmode) {
-      case -1:
-        myGLCD.drawBitmap(37, 39, emptySquare, xpos, 7);
-        break;
-      case 99:
-        myGLCD.drawBitmap(37, 39, emptySquare, 75, 7);
-        break;
-      case 1:
-        myGLCD.drawBitmap(xpos, 39, emptySquare, 75 - xpos, 7);
-        break;
-      case 0:
-        // myGLCD.clrRect(xpos, 40, xpos + (valprint.length() * 4) - 1, 45);
-        // myGLCD.drawBitmap(xpos, 40,  emptySquare, valprint.length()*4, 7);
-        break;
-    }
-    myGLCD.setFont(TinyFont);
-    myGLCD.print(valprint, xpos, 40);
-
-  }
-}
 
 
 
