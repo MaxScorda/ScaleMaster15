@@ -2,6 +2,7 @@
 ScaleMaster 1.5
 
 Scale & Tones Instructors
+Project for shield lcd 4884 (or LCD Nokia 5110 and analog joystick)
 
 Show Major and minor scales and play them at 30/60/90 Bpm
 
@@ -13,5 +14,5 @@ Rx/Lx: change 90/60/30 BPM +
           C: continuos play with tone change
 
 
-PIN 9: beep
-PIN 11: if 0 (gnd) play minor scale else major scale
+PIN 9: beeper
+PIN 11: if 0 (gnd) play minor           scale else major scale
